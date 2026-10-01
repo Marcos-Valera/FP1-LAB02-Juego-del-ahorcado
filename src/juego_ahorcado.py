@@ -93,10 +93,8 @@ def pedir_letra(letras_usadas):
             break
     return normalizar(pedido)
 
-def jugar():
-    intentos = 6
+def jugar(intentos, palabra):
     letras_usadas = ""
-    palabra = elige_palabra()
     palabra_enmascarada = enmascarar(palabra, letras_usadas)
 
     print("¡Bienvenido al juego del ahorcado!\n")
@@ -112,6 +110,6 @@ def jugar():
             intentos -= 1
         palabra_enmascarada = enmascarar(palabra, letras_usadas)
     print(f"🎉 ¡Has ganado! La palabra era: {palabra_enmascarada}")
-jugar()
 
-# TODO: Escribe el programa principal
+
+jugar(6, elige_palabra())
