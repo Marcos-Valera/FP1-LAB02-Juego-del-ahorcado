@@ -57,7 +57,7 @@ def enmascarar(palabra_secreta, letras_usadas=""):
     return cadena
 
 
-def ha_ganado(palabra_enmascarada):
+def ha_ganado(palabra_enmascarada: str):
     '''Devuelve True si el jugador ha ganado (es decir, si no quedan letras por descubrir en la palabra enmascarada).
 
     Parámetros:
@@ -69,9 +69,26 @@ def ha_ganado(palabra_enmascarada):
     return True if "_" not in palabra_enmascarada else False
 
 
-# TODO: Implementa la función mostrar_estado
+def mostrar_estado(palabra_enmascarada: str, intentos_restantes: int, letras_usadas=""):
+    estado = "Estado: " + " ".join(enmascarar(palabra_enmascarada, letras_usadas))
+    letras = "Letras usadas: " + letras_usadas
+    intentos = "Intentos restantes: " + str(intentos_restantes)
 
-# TODO: Implementa la función pedir_letra
+    print(estado + "\n" + letras + "\n" + intentos)
+
+def pedir_letra(letras_usadas):
+    while True:
+        pedido = input("Introduce una letra: ")
+
+        if not pedido.isalpha():
+            print("   Debes introducir una letra")
+        elif len(pedido) != 1:
+            print("   Debes introducir una única letra")
+        elif pedido in letras_usadas:
+            print("   Esa letra ya la has usado anteriormente")
+        else:
+            break
+    return normalizar(pedido)
 
 # TODO: Implementa la función jugar
 
