@@ -30,10 +30,12 @@ def normalizar(cadena):
     Devuelve:
       Cadena de texto con la palabra normalizada
     """
-    # TODO: Implementa esta función (y elimina la instrucción pass)
-    pass
+    cadena = cadena.lower().strip()
+    cadena = cadena.replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u").replace("ü", "u")
 
-def ocultar(palabra_secreta, letras_usadas=""):
+    return cadena
+
+def enmascarar(palabra_secreta, letras_usadas=""):
     '''Devuelve una cadena de texto con la palabra enmascarada. 
     Las letras que no están en letras_usadas se muestran como guiones bajos (_).
 
@@ -44,8 +46,15 @@ def ocultar(palabra_secreta, letras_usadas=""):
     Devuelve:
       Cadena de texto con la palabra enmascarada
     '''
-    # TODO: Implementa esta función (y elimina la instrucción pass)
-    pass
+    cadena = ""
+
+    for char in palabra_secreta:
+        if char in letras_usadas:
+            cadena += char
+        else:
+            cadena += "_"
+
+    return cadena
 
 
 def ha_ganado(palabra_enmascarada):
