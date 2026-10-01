@@ -49,7 +49,7 @@ def enmascarar(palabra_secreta, letras_usadas=""):
     cadena = ""
 
     for char in palabra_secreta:
-        if char in letras_usadas:
+        if normalizar(char) in letras_usadas:
             cadena += char
         else:
             cadena += "_"
@@ -70,8 +70,11 @@ def ha_ganado(palabra_enmascarada: str):
 
 
 def mostrar_estado(palabra_enmascarada: str, intentos_restantes: int, letras_usadas=""):
-    estado = "Estado: " + " ".join(enmascarar(palabra_enmascarada, letras_usadas))
-    letras = "Letras usadas: " + letras_usadas
+    estado = "Estado: " + " ".join(palabra_enmascarada)
+    if letras_usadas != "":
+        letras = "Letras usadas: " + letras_usadas
+    else:
+        letras = "Letras usadas: ninguna"
     intentos = "Intentos restantes: " + str(intentos_restantes)
 
     print(estado + "\n" + letras + "\n" + intentos)
@@ -90,6 +93,25 @@ def pedir_letra(letras_usadas):
             break
     return normalizar(pedido)
 
-# TODO: Implementa la función jugar
+def jugar():
+    intentos = 6
+    letras_usadas = ""
+    palabra = elige_palabra()
+    palabra_enmascarada = enmascarar(palabra, letras_usadas)
+
+    print("¡Bienvenido al juego del ahorcado!\n")
+
+    while not ha_ganado(palabra_enmascarada):
+        mostrar_estado(palabra_enmascarada, intentos, letras_usadas)
+        letra = pedir_letra(letras_usadas)
+        letras_usadas += letra
+        if letra in normalizar(palabra):
+            print("✅ ¡Bien!\n")
+        else:
+            print("❌ La letra no está en la palabra.\n")
+            intentos -= 1
+        palabra_enmascarada = enmascarar(palabra, letras_usadas)
+    print(f"🎉 ¡Has ganado! La palabra era: {palabra_enmascarada}")
+jugar()
 
 # TODO: Escribe el programa principal
