@@ -66,8 +66,7 @@ def ha_ganado(palabra_enmascarada):
     Devuelve:
     - True si el jugador ha ganado, False en caso contrario
     '''
-    # TODO: Implementa esta función (y elimina la instrucción pass)
-    pass
+    return True if "_" not in palabra_enmascarada else False
 
 
 # TODO: Implementa la función mostrar_estado
